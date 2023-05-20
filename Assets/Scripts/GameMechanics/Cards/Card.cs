@@ -56,32 +56,17 @@ namespace GameMechanics.Cards {
         /// <example>
         /// The string will follow the format
         /// 
-        /// <code>
-        /// | [name] | [types...]   |
-        /// | [description]         |
-        /// </code>
+        /// [name] : [types...]
+        /// [description]
         /// </example>
         /// <returns>A string representation of the <see cref="Card"/></returns>
         public override string ToString() {
-            StringBuilder str = new StringBuilder($"| {name} | ");
+            StringBuilder str = new StringBuilder($"{name} : ");
             for(int i = 0; i < TypeCount; i++){
                 CardType currType = Type(i);
                 str.Append($"{Enum.GetName(typeof(CardType), currType)} ");
             }
-                
-            int width = str.Length;
-            str.Append('\t').Append('|').Append('\n').Append('|');
-            for(int i = 0, col = 0; i < description.Length; i++,col++){
-                if(col == width - 1 && Char.IsLetter(description[i])){
-                    str.Append('-').Append('\t').Append('|').Append('\n').Append('|');
-                    col = 0;
-                } else if(col >= width){
-                    str.Append('\t').Append('|').Append('\n').Append('|');
-                    col = 0;
-                }
-                str.Append(description[i]);
-            }
-            return str.Append('|').ToString();
+            return str.Append('\n').Append(description).ToString();
         }
 
         //        /// <summary>
