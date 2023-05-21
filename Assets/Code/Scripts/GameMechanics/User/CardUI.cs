@@ -5,7 +5,7 @@ namespace GameMechanics.User {
 
         private const float changeXDef = 0f;
         private const float changeYDef = 0f;
-        private const float changeZDef = 0f;
+        private const float changeZDef = -0.01f; // Cards will move in front of others
         
         [Header("Change on Hover")]
         [SerializeField] private float changeX = changeXDef;
@@ -33,7 +33,6 @@ namespace GameMechanics.User {
 
         private Vector3 velocity = new Vector3();
         void Update() {
-            Debug.Log(isUp);
             if(isUp){
                 transform.position = Vector3.SmoothDamp(
                     current: transform.position,

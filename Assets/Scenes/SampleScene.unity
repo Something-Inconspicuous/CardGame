@@ -658,7 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeX: -0.15
   changeY: 0.75
-  changeZ: 0
+  changeZ: -0.01
 --- !u!212 &846464599
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -982,7 +982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeX: -0.15
   changeY: 0.75
-  changeZ: 0
+  changeZ: -0.01
 --- !u!61 &1397671302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeX: -0.15
   changeY: 0.75
-  changeZ: 0
+  changeZ: -0.01
 --- !u!212 &1906536029
 SpriteRenderer:
   m_ObjectHideFlags: 0
