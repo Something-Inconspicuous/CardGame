@@ -2,15 +2,13 @@ using UnityEngine;
 
 namespace GameMechanics.User {
     public class CardUI : MonoBehaviour {
-
-        private const float changeXDef = 0f;
-        private const float changeYDef = 0f;
-        private const float changeZDef = -0.01f; // Cards will move in front of others
-        
         [Header("Change on Hover")]
-        [SerializeField] private float changeX = changeXDef;
-        [SerializeField] private float changeY = changeYDef;
-        [SerializeField] private float changeZ = changeZDef;
+
+        [SerializeField] private GameObject cardToMove;
+
+        [SerializeField] private float changeX = 0f;
+        [SerializeField] private float changeY = 0f;
+        [SerializeField] private float changeZ = -0.01f;
 
         private Vector3 upPos;
         private Vector3 downPos;
@@ -19,8 +17,11 @@ namespace GameMechanics.User {
         private const float smoothing = 0.1f;
 
         void Awake() {
-            upPos = transform.position + new Vector3(changeX, changeY, changeZ);
-            downPos = transform.position;
+            if(cardToMove == null)
+                cardToMove = GetComponentInChildren<Transform>().gameObject;
+
+            upPos = cardToMove.transform.position + new Vector3(changeX, changeY, changeZ);
+            downPos = cardToMove.transform.position;
         }
 
         void OnMouseEnter() {
@@ -32,17 +33,18 @@ namespace GameMechanics.User {
         }
 
         private Vector3 velocity = new Vector3();
+
         void Update() {
             if(isUp){
-                transform.position = Vector3.SmoothDamp(
-                    current: transform.position,
+                cardToMove.transform.position = Vector3.SmoothDamp(
+                    current: cardToMove.transform.position,
                     target: upPos,
                     currentVelocity: ref velocity,
                     smoothTime: smoothing
                 );
             } else {
-                transform.position = Vector3.SmoothDamp(
-                    current: transform.position,
+                cardToMove.transform.position = Vector3.SmoothDamp(
+                    current: cardToMove.transform.position,
                     target: downPos,
                     currentVelocity: ref velocity,
                     smoothTime: smoothing
