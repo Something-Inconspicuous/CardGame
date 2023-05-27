@@ -40,7 +40,7 @@ namespace GameMechanics.Cards {
             return false;
         }
 
-        public static CardType[] CardTypes { get; }
+        public CardTypesContainer CardTypes { get; }
         /// <summary>
         /// Returns the n<sup>th</sup> type of the card
         /// </summary>
@@ -87,6 +87,19 @@ namespace GameMechanics.Cards {
         //        }
         //
         //        public override int GetHashCode() => name.GetHashCode();
+
+        /// <summary>
+        /// Readonly container helper struct for card types. DO NOT USE outside of <see href="Card.cs">Card.cs</see>
+        /// </summary>
+        public struct CardTypesContainer {
+            private CardType[] _types;
+            public CardTypesContainer(params CardType[] types) => _types = types;
+
+            public CardType this[int index] { get => _types[index]; }
+
+            public int Count { get => _types.Length; }
+            public int Length { get => _types.Length; }
+        }
     }
 }
 
