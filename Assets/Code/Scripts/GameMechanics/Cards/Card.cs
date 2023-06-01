@@ -6,7 +6,7 @@ namespace GameMechanics.Cards {
     public class Card {
         public readonly string name;
         public readonly string description;
-        public readonly int damage;
+        public CardEffects effects;
 
         /// <summary>
         /// Creates a new <c>Card</c> with a given name and description
@@ -14,10 +14,11 @@ namespace GameMechanics.Cards {
         /// <param name="name">The name of the card</param>
         /// <param name="description">The description of the card</param>
         /// <param name="damage">The damage the card deals (may be zero)</param>
-        public Card(string name, string description, int damage = 0){
+        public Card(string name, string description, CardEffects effects, params CardType[] types){
             this.name = name;
             this.description = description;
-            this.damage = damage;
+            this.effects = effects;
+            CardTypes = new CardTypesContainer(types);
         }
 
         /// <summary>
