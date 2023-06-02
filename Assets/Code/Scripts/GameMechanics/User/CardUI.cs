@@ -25,10 +25,12 @@ namespace GameMechanics.User {
         }
 
         void OnMouseEnter() {
+            transform.Translate(0, 0, changeZ);
             isUp = true;
         }
 
         void OnMouseExit() {
+            transform.Translate(0, 0, -changeZ);
             isUp = false;
         }
 
