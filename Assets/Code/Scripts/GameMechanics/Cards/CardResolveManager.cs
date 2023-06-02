@@ -25,8 +25,7 @@ namespace GameMechanics.Cards {
             
             // Apply wild card buffs total to all cards
             for (int i = 0; i < cards.Length; i++){
-                cards[i].effects.multiplier *= globalMult;
-                cards[i].effects.damage = (int)((float)cards[i].effects.damage * globalMult);
+                cards[i].effects *= globalMult;
             }
 
             // Apply left to right buffs
@@ -34,15 +33,13 @@ namespace GameMechanics.Cards {
                 switch (cards[i].effects.target) {
                     case CardTarget.RIGHT_CARD:
 
-                        cards[i + 1].effects.multiplier *= cards[i].effects.multiplier;
-                        cards[i + 1].effects.damage = (int)((float)cards[i + 1].effects.damage * cards[i].effects.multiplier);
+                        cards[i + 1].effects *= cards[i].effects.multiplier;
 
                         break;
                     case CardTarget.RIGHT_CARDS:
 
                         for (int j = i + 1; j < cards.Length; j++) {
-                            cards[j].effects.multiplier *= cards[i].effects.multiplier;
-                            cards[j].effects.damage = (int)((float)cards[j].effects.damage * cards[i].effects.multiplier);
+                            cards[j].effects *= cards[i].effects.multiplier;
                         }
 
                         break;
@@ -54,15 +51,13 @@ namespace GameMechanics.Cards {
                 switch (cards[i].effects.target) {
                     case CardTarget.LEFT_CARD:
 
-                        cards[i - 1].effects.multiplier *= cards[i].effects.multiplier;
-                        cards[i - 1].effects.damage = (int)((float)cards[i - 1].effects.damage * cards[i].effects.multiplier);
+                        cards[i - 1].effects *= cards[i].effects.multiplier;
                         
                         break;
                     case CardTarget.LEFT_CARDS: 
 
                         for (int j = i - 1; j >= 0; j--){
-                            cards[j].effects.multiplier *= cards[i].effects.multiplier;
-                            cards[j].effects.damage = (int)((float)cards[j].effects.damage * cards[i].effects.multiplier);
+                            cards[j].effects *= cards[i].effects.multiplier;
                         }
 
                         break;
@@ -90,15 +85,13 @@ namespace GameMechanics.Cards {
                 // it is targeting this card
                 if (card2.effects.target == CardTarget.LEFT_CARD && (i == start + 1 || streak)) {
                     streak = true;
-                    card.effects.multiplier *= card2.effects.multiplier;
-                    card.effects.damage = (int)((float)card.effects.damage * card2.effects.multiplier);
+                    card.effects *= card2.effects.multiplier;
                 } else {
                     streak = false;
                 }
 
                 if(card2.effects.target == CardTarget.LEFT_CARDS){
-                    card.effects.multiplier *= card2.effects.multiplier;
-                    card.effects.damage = (int)((float)card.effects.damage * card2.effects.multiplier);
+                    card.effects *= card2.effects.multiplier;
                 }
             }
         }
@@ -111,15 +104,13 @@ namespace GameMechanics.Cards {
 
                 if(card2.effects.target == CardTarget.RIGHT_CARD && (i == start - 1 || streak)){
                     streak = true;
-                    card.effects.multiplier *= card2.effects.multiplier;
-                    card.effects.damage = (int)((float)card.effects.damage * card2.effects.multiplier);
+                    card.effects *= card2.effects.multiplier;
                 } else {
                     streak = false;
                 }
 
                 if(card2.effects.target == CardTarget.RIGHT_CARDS){
-                    card.effects.multiplier *= card2.effects.multiplier;
-                    card.effects.damage = (int)((float)card.effects.damage * card2.effects.multiplier);
+                    card.effects *= card2.effects.multiplier;
                 }
             }
         }

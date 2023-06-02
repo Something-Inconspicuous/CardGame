@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using GameMechanics.Cards;
+using GameMechanics.Cards.CardGeneration;
 using GameMechanics.Enemy;
 
 public class Tester : MonoBehaviour {
@@ -14,8 +15,7 @@ public class Tester : MonoBehaviour {
         Card tcard2 = new Card(
             name: "other",
             description: "Other card for testing",
-            effects: ef2,
-            types: CardType.DAMAGE
+            effects: ef2
         );
 
         CardEffects efMult2 = new CardEffects();
@@ -25,8 +25,7 @@ public class Tester : MonoBehaviour {
         Card tcardMult2 = new Card(
             name: "otherother",
             description: "Otherother card",
-            effects: efMult2,
-            types: CardType.BUFF
+            effects: efMult2
         );
 
         CardEffects efAllMult = new CardEffects();
@@ -36,24 +35,30 @@ public class Tester : MonoBehaviour {
         Card tcardAllMult = new Card(
             name: "All",
             description: "multiply all",
-            effects: efAllMult,
-            types: CardType.BUFF
+            effects: efAllMult
         );
 
         Card tcardMult = new Card(
             name: "Testing card",
             description: "This is the card being used for testing.",
-            effects: efMult,
-            types: CardType.BUFF
+            effects: efMult
         );
         //tcard.effects *= ef;
         Debug.Log(tcardMult.ToString());
+
+        //CardLoader.PrimeCards(tcard2, tcardMult, tcardMult2, tcardAllMult);
 
         //                                            2dmg,   x2<-       x2<-        x2all
         CardEffects teff = CardResolveManager.Resolve(tcard2, tcardMult, tcardMult2, tcardAllMult);
 
         Debug.Log($"{teff.damage} {teff.multiplier}");
 
+
+        var thing = CardLoader.LoadCards();
+
+        Debug.Log(thing[0]);
+
+        
         
     }
     // TODO: test stuff

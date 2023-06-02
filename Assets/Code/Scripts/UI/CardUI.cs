@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameMechanics.User {
+namespace UI {
     public class CardUI : MonoBehaviour {
         [Header("Change on Hover")]
 

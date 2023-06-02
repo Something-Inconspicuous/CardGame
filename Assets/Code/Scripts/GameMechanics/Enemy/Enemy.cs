@@ -1,7 +1,7 @@
 
 namespace GameMechanics.Enemy {
     public class Enemy {
-        public int health;
+        public int health {get; set;}
 
         public Enemy/*#1*/(int health) {
             this.health = health;

@@ -1,0 +1,40 @@
+{
+    "Items": [
+        {
+            "name": "other",
+            "description": "Other card for testing",
+            "effects": {
+                "damage": 2,
+                "target": 0,
+                "multiplier": 1.0
+            }
+        },
+        {
+            "name": "Testing card",
+            "description": "This is the card being used for testing.",
+            "effects": {
+                "damage": 0,
+                "target": 4,
+                "multiplier": 2.0
+            }
+        },
+        {
+            "name": "otherother",
+            "description": "Otherother card",
+            "effects": {
+                "damage": 0,
+                "target": 4,
+                "multiplier": 2.0
+            }
+        },
+        {
+            "name": "All",
+            "description": "multiply all",
+            "effects": {
+                "damage": 0,
+                "target": 3,
+                "multiplier": 2.0
+            }
+        }
+    ]
+}

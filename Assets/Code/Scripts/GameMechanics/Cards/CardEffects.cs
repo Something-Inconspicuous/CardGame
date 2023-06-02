@@ -2,6 +2,7 @@
 using System;
 
 namespace GameMechanics.Cards {
+    [System.Serializable]
     public struct CardEffects {
         public int damage;
 
@@ -14,7 +15,12 @@ namespace GameMechanics.Cards {
         }
 
         public static CardEffects operator*(CardEffects left, CardEffects right){
-            left.damage = (int)((float)left.damage * right.multiplier);
+            return left * right.multiplier;
+        }
+
+        public static CardEffects operator*(CardEffects left, float right){
+            left.multiplier *= right;
+            left.damage = (int)((float)left.damage * right);
             return left;
         }
     }
