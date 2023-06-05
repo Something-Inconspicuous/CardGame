@@ -8,7 +8,7 @@ namespace GameMechanics.Cards {
 
             // Apply original buffs to wild cards
             for (int i = 0; i < cards.Length; i++){
-                if(cards[i].effects.target != CardTarget.ALL_CARDS) continue;
+                if((cards[i].effects.target & CardTarget.ALL_CARDS) != CardTarget.ALL_CARDS) continue;
 
                 ApplyFromLeft(ref cards, i, cards.Length);
                 ApplyFromRight(ref cards, i, 0);
@@ -18,7 +18,7 @@ namespace GameMechanics.Cards {
 
             // Find wild card buffs total
             for (int i = 0; i < cards.Length; i++){
-                if(cards[i].effects.target != CardTarget.ALL_CARDS) continue;
+                if((cards[i].effects.target & CardTarget.ALL_CARDS) != CardTarget.ALL_CARDS) continue;
 
                 globalMult *= cards[i].effects.multiplier;
             }
@@ -30,38 +30,25 @@ namespace GameMechanics.Cards {
 
             // Apply left to right buffs
             for (int i = 0; i < cards.Length - 1; i++){
-                switch (cards[i].effects.target) {
-                    case CardTarget.RIGHT_CARD:
-
-                        cards[i + 1].effects *= cards[i].effects.multiplier;
-
-                        break;
-                    case CardTarget.RIGHT_CARDS:
-
-                        for (int j = i + 1; j < cards.Length; j++) {
-                            cards[j].effects *= cards[i].effects.multiplier;
-                        }
-
-                        break;
+                if((cards[i].effects.target & CardTarget.RIGHT_CARD) == CardTarget.RIGHT_CARD){
+                    cards[i + 1].effects *= cards[i].effects.multiplier;
+                }
+                if((cards[i].effects.target & CardTarget.RIGHT_CARDS) == CardTarget.RIGHT_CARDS){
+                    for (int j = i + 1; j < cards.Length; j++) {
+                        cards[j].effects *= cards[i].effects.multiplier;
+                    }
                 }
             }
 
             // Apply right to left buffs
             for (int i = cards.Length - 1; i > 0 ; i--){
-                switch (cards[i].effects.target) {
-                    case CardTarget.LEFT_CARD:
-
-                        cards[i - 1].effects *= cards[i].effects.multiplier;
-                        
-                        break;
-                    case CardTarget.LEFT_CARDS: 
-
-                        for (int j = i - 1; j >= 0; j--){
-                            cards[j].effects *= cards[i].effects.multiplier;
-                        }
-
-                        break;
-                        
+                if((cards[i].effects.target & CardTarget.LEFT_CARD) == CardTarget.LEFT_CARD){
+                    cards[i - 1].effects *= cards[i].effects.multiplier;
+                }
+                if((cards[i].effects.target & CardTarget.LEFT_CARDS) == CardTarget.LEFT_CARDS){
+                    for (int j = i - 1; j >= 0; j--){
+                        cards[j].effects *= cards[i].effects.multiplier;
+                    }
                 }
             }
 

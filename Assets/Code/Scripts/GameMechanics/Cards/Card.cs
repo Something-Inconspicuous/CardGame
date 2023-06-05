@@ -14,7 +14,7 @@ namespace GameMechanics.Cards {
         /// </summary>
         /// <param name="name">The name of the card</param>
         /// <param name="description">The description of the card</param>
-        /// <param name="damage">The damage the card deals (may be zero)</param>
+        /// <param name="effects">The <see cref="CardEffects">effects</see> the card will have when played</param>
         public Card(string name, string description, CardEffects effects){
             this.name = name;
             this.description = description;
@@ -32,8 +32,12 @@ namespace GameMechanics.Cards {
         /// </example>
         /// <returns>A string representation of the <see cref="Card"/></returns>
         public override string ToString() {
-            StringBuilder str = new StringBuilder($"{name} : ");
-            return str.Append('\n').Append(description).ToString();
+            return new StringBuilder($"{name} : ")
+                .Append('\n')
+                .Append(description)
+                .Append('\n')
+                .Append(effects)
+                .ToString();
         }
 
         //        /// <summary>
