@@ -7,7 +7,7 @@ namespace UI {
     [RequireComponent(typeof(BoxCollider2D))]
     public class EnemyUI : MonoBehaviour {
         //[SerializeField]
-        private HealthUI[] healthMarkers;
+        private GameObject[] healthMarkers;
 
         private Enemy enemy;
 
@@ -16,7 +16,7 @@ namespace UI {
         }
 
         public void CreateHealthDisplay(){
-            healthMarkers = new HealthUI[enemy.health];
+            healthMarkers = new GameObject[enemy.health];
             GameObject healthSprite = GameObject.Find("Health");
             //TODO - create health display
 
@@ -36,7 +36,7 @@ namespace UI {
                 return;
             }
 
-            float distFromEachHealth = width / enemy.health - 1;
+            float distFromEachHealth = size.x / enemy.health - 1;
 
             Vector3 posForHealth = new Vector3(
                         transform.position.x - size.x / 2,
@@ -64,7 +64,7 @@ namespace UI {
             CreateHealthDisplay();
         }
         public void OnTakeDamage(){
-            healthMarkers[enemy.health - 1].onTakeDamage();
+            //  healthMarkers[enemy.health - 1].onTakeDamage();
         }
     }
 }
