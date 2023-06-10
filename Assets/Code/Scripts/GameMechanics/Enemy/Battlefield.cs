@@ -8,6 +8,11 @@ namespace GameMechanics.Enemy {
             enemies = new List<Enemy>();
         }
 
+        public void DamageEnemies(int damage){
+            //TODO - allow player to choose enemy to damage
+            this[0].health -= damage;
+        }
+
         public void AddEnemy(Enemy enemy){
             enemies.Add(enemy);
         }

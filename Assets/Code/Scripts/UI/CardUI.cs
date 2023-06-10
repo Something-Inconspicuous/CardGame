@@ -1,3 +1,5 @@
+using GameMechanics;
+using GameMechanics.Cards;
 using UnityEngine;
 
 namespace UI {
@@ -5,6 +7,7 @@ namespace UI {
         [Header("Change on Hover")]
 
         [SerializeField] private GameObject cardToMove;
+        [SerializeField] private Card card;
 
         [SerializeField] private float changeX = 0f;
         [SerializeField] private float changeY = 0f;
@@ -32,6 +35,10 @@ namespace UI {
         void OnMouseExit() {
             transform.Translate(0, 0, -changeZ);
             isUp = false;
+        }
+
+        void OnMouseDown() {
+            GeneralManager.Queue(card.effects);
         }
 
         private Vector3 velocity = new Vector3();
