@@ -11,6 +11,9 @@ public class Tester : MonoBehaviour {
         foreach (Card card in cards) {
             Debug.Log(card);
         }
+
+        Enemy enemy = new Enemy(4);
+        
     }
     // TODO: test stuff
 }
