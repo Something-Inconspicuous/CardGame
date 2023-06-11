@@ -12,6 +12,7 @@ namespace GameMechanics.Cards {
     /// a card with the above target will apply its effects to both of
     /// the cards to its left and right
     /// </remarks>
+    [System.Flags]
     public enum CardTarget : byte {
         NONE        = (byte)0,
         PLAYER      = (byte)1,

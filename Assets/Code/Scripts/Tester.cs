@@ -8,12 +8,13 @@ public class Tester : MonoBehaviour {
     Card[] cards;
 
     void Start(){
-        GeneralManager.Init();
+        GeneralManager.Init(); //TODO - a better way than this
+        ManageUI.Init();
 
         cards = CardLoader.LoadCards();
-        foreach (Card card in cards) {
-            Debug.Log(card);
-        }
+        //foreach (Card card in cards) {
+        //    Debug.Log(card);
+        //}
 
         Enemy enemy = new Enemy(4);
         

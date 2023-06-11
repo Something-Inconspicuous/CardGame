@@ -3,33 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using GameMechanics;
 
-public class ManageUI : MonoBehaviour
+public static class ManageUI
 {
-    public int playerHealth;
-    public int enemyHealth;
-    public TextMeshProUGUI playerHealthText;
-    public TextMeshProUGUI enemyHealthText;
+    public static GameObject canvas {get => canv;}
+    private static GameObject canv;
+    public static TextMeshProUGUI playerHealthText;
+    public static TextMeshProUGUI enemyHealthText;
 
+    public static void Init() {
+        Debug.Log("Init...");
+        canv = GameObject.Find("Canvas");
+        Debug.Log(canv);
+        playerHealthText = canv.GetComponentInChildren<TextMeshProUGUI>();
+        Debug.Log(playerHealthText);
+        enemyHealthText = canv.GetComponentInChildren<TextMeshProUGUI>();
 
-    private void Update() {
-        UpdatePlayerHealth(playerHealth);
-        UpdateEnemyHealth(enemyHealth);
+        UpdateEnemyHealth();
+        UpdatePlayerHealth();
+        
+        Debug.Log("...Init");
     }
 
+    //private static void Update() {
+    //    UpdatePlayerHealth();
+    //    UpdateEnemyHealth();
+    //}
 
-
-
-    public void UpdatePlayerHealth(int health)
+    public static void UpdatePlayerHealth()
     {
-        playerHealth = health;
-        playerHealthText.text = "Player Health: " + playerHealth;
+        playerHealthText.text = $"Player Health: {GeneralManager.PlayerHealth}";
     }
 
-    public void UpdateEnemyHealth(int health)
+    public static void UpdateEnemyHealth()
     {
-        enemyHealth = health;
-        enemyHealthText.text = "Enemy Health: " + enemyHealth;
+        enemyHealthText.text = $"Enemy Health: ";
     }
 
 }

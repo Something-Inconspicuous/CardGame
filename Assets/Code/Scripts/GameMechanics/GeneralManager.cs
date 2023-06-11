@@ -22,6 +22,9 @@ namespace GameMechanics {
             }
 
             Debug.Log(player.health);
+            ManageUI.UpdatePlayerHealth();
         }
+
+        public static int PlayerHealth => player.health;
     }
 }

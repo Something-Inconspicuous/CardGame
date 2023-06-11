@@ -12,13 +12,13 @@ namespace GameMechanics.Cards.CardGeneration
 
         public static Card[] LoadCards() {
             string json = File.ReadAllText(JsonPath);
-            Debug.Log(json);
+            //Debug.Log(json);
             return JsonArrayUtility.FromJson<Card>(json);
         }
 
         public static void PrimeCards(params Card[] cards){
             string contents = JsonArrayUtility.ToJson(cards, prettyPrint: true);
-            Debug.Log(contents);
+            //Debug.Log(contents);
             File.WriteAllText(JsonPath, contents);
         } 
     }
